@@ -697,9 +697,8 @@ h3 {
         margin: 1.5rem 0;
     }
 
-    .hire-btn {
+    .navbar .hire-btn {
         display: none;
-        /* Hide in nav, show elsewhere if needed */
     }
 
     .services-grid,
