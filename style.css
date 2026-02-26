@@ -1,6 +1,8 @@
 :root {
-    --primary-color: #ff6a00;
-    --primary-hover: #e65f00;
+    --primary-color: #d4af37;
+    /* Premium Gold */
+    --primary-hover: #b8860b;
+    /* Dark Goldenrod */
     --bg-dark: #0a0a0a;
     --bg-surface: #1a1a1a;
     --text-main: #ffffff;
@@ -128,7 +130,7 @@ h3 {
 }
 
 .hire-btn {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #ff9e5e 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, #ffcc33 100%);
     color: white;
     padding: 0.8rem 2rem;
     border-radius: 8px;
@@ -136,14 +138,14 @@ h3 {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 0.9rem;
-    box-shadow: 0 4px 15px rgba(255, 106, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
     border: none;
 }
 
 .hire-btn:hover {
-    background: linear-gradient(135deg, #ff9e5e 0%, var(--primary-color) 100%);
+    background: linear-gradient(135deg, #ffcc33 0%, var(--primary-color) 100%);
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 106, 0, 0.4);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
 }
 
 
@@ -848,7 +850,7 @@ h3 {
 }
 
 .auto-scroll-badge {
-    background: rgba(255, 122, 45, 0.1);
+    background: rgba(212, 175, 55, 0.1);
     color: var(--primary-color);
     padding: 0.4rem 1rem;
     border-radius: 20px;
@@ -857,7 +859,7 @@ h3 {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    border: 1px solid rgba(255, 122, 45, 0.2);
+    border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .project-slider-container {
@@ -982,7 +984,7 @@ h3 {
     transform: translateY(-50%);
     z-index: 20;
     background: rgba(10, 10, 10, 0.6);
-    border: 1px solid rgba(255, 122, 45, 0.3);
+    border: 1px solid rgba(212, 175, 55, 0.3);
     color: white;
     width: 50px;
     height: 50px;
@@ -1007,7 +1009,7 @@ h3 {
     background: var(--primary-color);
     border-color: var(--primary-color);
     transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 0 20px rgba(255, 122, 45, 0.4);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
 }
 
 @media (max-width: 768px) {
@@ -1049,7 +1051,7 @@ h3 {
 
 .upcoming-card:hover {
     transform: translateY(-10px);
-    border-color: rgba(255, 106, 0, 0.3);
+    border-color: rgba(212, 175, 55, 0.3);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
@@ -1057,7 +1059,7 @@ h3 {
     position: absolute;
     top: 20px;
     right: 20px;
-    background: rgba(255, 106, 0, 0.1);
+    background: rgba(212, 175, 55, 0.1);
     color: var(--primary-color);
     padding: 0.3rem 0.8rem;
     border-radius: 30px;
@@ -1065,7 +1067,7 @@ h3 {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border: 1px solid rgba(255, 106, 0, 0.2);
+    border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .upcoming-content {
@@ -1106,9 +1108,9 @@ h3 {
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--primary-color), #ff9e5e);
+    background: linear-gradient(90deg, var(--primary-color), #ffcc33);
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 106, 0, 0.5);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
 }
 
 @media (max-width: 768px) {
