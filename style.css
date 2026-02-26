@@ -22,6 +22,10 @@ html,
 body {
     overflow-x: hidden;
     width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -57,6 +61,8 @@ button,
 
 section {
     padding: 5rem 0;
+    overflow: hidden;
+    /* Prevents reveal animations from causing overflow */
 }
 
 h1,
@@ -783,7 +789,8 @@ h3 {
 
 .reveal-left {
     opacity: 0;
-    transform: translateX(-50px);
+    transform: translateX(-30px);
+    /* Reduced movement for stability */
     transition: all 0.8s ease-out;
 }
 
@@ -794,7 +801,8 @@ h3 {
 
 .reveal-right {
     opacity: 0;
-    transform: translateX(50px);
+    transform: translateX(30px);
+    /* Reduced movement for stability */
     transition: all 0.8s ease-out;
 }
 
@@ -1114,16 +1122,86 @@ h3 {
 }
 
 @media (max-width: 768px) {
-    .upcoming-grid {
+    .container {
+        padding: 0 1.2rem;
+    }
+
+    section {
+        padding: 3rem 0;
+    }
+
+    /* Hero Responsive */
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .hero-text {
+        order: 2;
+    }
+
+    .hero-image {
+        order: 1;
+        margin-bottom: 2rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .hero-btns,
+    .social-icons,
+    .stats {
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .stats {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    /* Skills/Services Grid */
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* About Responsive */
+    .about-content {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
 
-    .upcoming-card {
-        padding: 2rem;
+    /* Slider Arrows Mobile Fix */
+    .control-btn {
+        width: 40px;
+        height: 40px;
     }
 
-    .upcoming-content h3 {
-        font-size: 1.5rem;
+    .control-btn.prev {
+        left: 10px;
+    }
+
+    .control-btn.next {
+        right: 10px;
+    }
+
+    /* Upcoming Grid Mobile */
+    .upcoming-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .upcoming-card {
+        padding: 1.5rem;
+    }
+
+    /* Contact Responsive */
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
 }
