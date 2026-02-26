@@ -236,34 +236,52 @@
     <!-- Upcoming Projects Section -->
     <section id="upcoming" class="upcoming">
         <div class="container">
-            <h2 class="section-title reveal">Upcoming <span class="text-orange">Projects</span></h2>
-            <div class="upcoming-grid">
-                <div class="upcoming-card reveal delay-1">
-                    <div class="upcoming-badge">Coming Soon</div>
-                    <div class="upcoming-content">
-                        <h3>AI Portfolio Builder</h3>
-                        <p>An intelligent platform that helps developers showcase their work with automated layout
-                            optimizations and SEO-friendly documentation.</p>
-                        <div class="progress-container">
-                            <span class="progress-label">Phase: Development</span>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 45%;"></div>
-                            </div>
+            <div class="section-header reveal">
+                <h2 class="section-title">Upcoming <span class="text-orange">Projects</span></h2>
+                <span class="auto-scroll-badge"><i class="fas fa-sync-alt fa-spin"></i> Auto-Scrolling</span>
+            </div>
+
+            <div class="project-slider-container">
+                <div class="project-slider" id="upcomingSlider">
+                    <div class="portfolio-item reveal" data-category="web">
+                        <img src="resources/AI-Builder.png" alt="AI Portfolio Builder">
+                        <div class="portfolio-overlay">
+                            <h3>AI Portfolio Builder</h3>
+                            <p>Phase: Development | 45%</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item reveal" data-category="ui">
+                        <img src="resources/Oracle-Mastery.png" alt="Oracle APEX Mastery Hub">
+                        <div class="portfolio-overlay">
+                            <h3>Oracle APEX Mastery Hub</h3>
+                            <p>Phase: Research | 20%</p>
                         </div>
                     </div>
                 </div>
-                <div class="upcoming-card reveal delay-2">
-                    <div class="upcoming-badge">Planning</div>
-                    <div class="upcoming-content">
-                        <h3>Oracle APEX Mastery Hub</h3>
-                        <p>A comprehensive learning and resource platform for Oracle APEX developers, featuring advanced
-                            patterns and PL/SQL best practices.</p>
-                        <div class="progress-container">
-                            <span class="progress-label">Phase: Research</span>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 20%;"></div>
-                            </div>
-                        </div>
+
+                <!-- Navigation Dots -->
+                <div class="slider-dots" id="upcomingDots">
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
+                </div>
+
+                <!-- Side Navigation Arrows -->
+                <button class="control-btn prev" id="upcomingPrevBtn"><i class="fas fa-chevron-left"></i></button>
+                <button class="control-btn next" id="upcomingNextBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <!-- Dynamic Descriptions -->
+            <div class="project-descriptions-container reveal delay-1">
+                <div class="project-desc-track" id="upcomingDescTrack">
+                    <div class="project-desc-item">
+                        <p><strong>AI Portfolio Builder</strong> is an intelligent platform that helps developers
+                            showcase
+                            their work with automated layout optimizations and SEO-friendly documentation.</p>
+                    </div>
+                    <div class="project-desc-item">
+                        <p><strong>Oracle APEX Mastery Hub</strong> is a comprehensive learning and resource platform
+                            for
+                            Oracle APEX developers, featuring advanced patterns and PL/SQL best practices.</p>
                     </div>
                 </div>
             </div>

@@ -233,6 +233,71 @@ document.addEventListener('DOMContentLoaded', () => {
 
         startAutoScroll();
     }
+
+    // Upcoming Project Carousel Auto-scroll
+    const upcomingSlider = document.getElementById('upcomingSlider');
+    const upcomingDots = document.querySelectorAll('#upcomingDots .dot');
+    const upcomingPrevBtn = document.getElementById('upcomingPrevBtn');
+    const upcomingNextBtn = document.getElementById('upcomingNextBtn');
+
+    if (upcomingSlider && upcomingDots.length > 0) {
+        const upcomingDescTrack = document.getElementById('upcomingDescTrack');
+        let currentIndex = 0;
+        let interval;
+
+        function updateSlider() {
+            upcomingSlider.style.transform = `translateX(-${currentIndex * 100}%)`;
+            if (upcomingDescTrack) {
+                upcomingDescTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+            upcomingDots.forEach(dot => dot.classList.remove('active'));
+            upcomingDots[currentIndex].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % upcomingDots.length;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + upcomingDots.length) % upcomingDots.length;
+            updateSlider();
+        }
+
+        function startAutoScroll() {
+            interval = setInterval(nextSlide, 3000); // 3 seconds
+        }
+
+        function stopAutoScroll() {
+            clearInterval(interval);
+        }
+
+        upcomingNextBtn.addEventListener('click', () => {
+            nextSlide();
+            stopAutoScroll();
+            startAutoScroll();
+        });
+
+        upcomingPrevBtn.addEventListener('click', () => {
+            prevSlide();
+            stopAutoScroll();
+            startAutoScroll();
+        });
+
+        upcomingDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                currentIndex = parseInt(dot.getAttribute('data-index'));
+                updateSlider();
+                stopAutoScroll();
+                startAutoScroll();
+            });
+        });
+
+        upcomingSlider.addEventListener('mouseenter', stopAutoScroll);
+        upcomingSlider.addEventListener('mouseleave', startAutoScroll);
+
+        startAutoScroll();
+    }
 });
 
 // Fade In Animation CSS (dynamic injection)
