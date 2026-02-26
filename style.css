@@ -1015,3 +1015,113 @@ h3 {
         height: 350px;
     }
 }
+
+/* Upcoming Projects Section */
+.upcoming-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.upcoming-card {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+}
+
+.upcoming-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 106, 0, 0.03) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.upcoming-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(255, 106, 0, 0.3);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.upcoming-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 106, 0, 0.1);
+    color: var(--primary-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid rgba(255, 106, 0, 0.2);
+}
+
+.upcoming-content {
+    position: relative;
+    z-index: 1;
+}
+
+.upcoming-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+.upcoming-content p {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.progress-container {
+    margin-top: auto;
+}
+
+.progress-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.8rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), #ff9e5e);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 106, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .upcoming-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .upcoming-card {
+        padding: 2rem;
+    }
+
+    .upcoming-content h3 {
+        font-size: 1.5rem;
+    }
+}
