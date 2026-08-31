@@ -45,7 +45,7 @@ function AnimatedSphere() {
 
 export default function Hero() {
   return (
-    <section className="hero-section" style={{ height: '100vh', padding: 0, position: 'relative', overflow: 'hidden' }}>
+    <section id="home" className="hero-section" style={{ height: '100vh', padding: 0, position: 'relative', overflow: 'hidden' }}>
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
         <Canvas camera={{ position: [0, 0, 5], fov: 45 }} dpr={[1, 2]} performance={{ min: 0.5 }}>
           <ambientLight intensity={0.5} />
