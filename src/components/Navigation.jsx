@@ -74,7 +74,7 @@ export default function Navigation() {
             const sectionId = link.toLowerCase();
             const isActive = activeSection === sectionId;
             return (
-              <li key={link}>
+              <li key={link} style={{ position: 'relative' }}>
                 <button 
                   onClick={() => {
                     const el = document.getElementById(sectionId);
@@ -86,13 +86,29 @@ export default function Navigation() {
                     transition: 'color 0.3s ease',
                     color: isActive ? 'var(--accent-gold)' : 'var(--text-primary)',
                     fontWeight: isActive ? 'bold' : 'normal',
-                    borderBottom: isActive ? '1px solid var(--accent-gold)' : 'none',
-                    paddingBottom: '4px'
+                    padding: '8px 0',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer'
                   }}
                   className="hover-gold interactive"
                 >
                   {link}
                 </button>
+                {isActive && (
+                  <motion.div
+                    layoutId="navbar-underline"
+                    style={{
+                      position: 'absolute',
+                      bottom: '-2px',
+                      left: 0,
+                      right: 0,
+                      height: '2px',
+                      background: 'var(--accent-gold)'
+                    }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  />
+                )}
               </li>
             );
           })}
