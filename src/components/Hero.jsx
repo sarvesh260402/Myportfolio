@@ -90,7 +90,7 @@ export default function Hero() {
             >
               CONTACT ME
             </button>
-            <a href="/resources/Sarvesh-Gupta-FlowCV-Resume-20260213.pdf" download className="btn-primary" style={{ borderColor: 'var(--accent-gold)', color: 'var(--accent-gold)' }}>
+            <a href="resources/Sarvesh-Gupta-FlowCV-Resume-20260213.pdf" download className="btn-primary" style={{ borderColor: 'var(--accent-gold)', color: 'var(--accent-gold)' }}>
               DOWNLOAD RESUME
             </a>
           </div>

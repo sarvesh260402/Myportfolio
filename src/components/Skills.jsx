@@ -49,7 +49,7 @@ function Constellation() {
       {nodes.map((pos, i) => (
         <group key={i}>
           {/* Connection line to center */}
-          <Line points={[[0,0,0], pos]} color="rgba(0, 229, 255, 0.2)" lineWidth={1} />
+          <Line points={[[0,0,0], pos]} color="#00e5ff" transparent opacity={0.2} lineWidth={1} />
           
           <Float speed={1 + Math.random()} floatIntensity={0.5} position={pos}>
             <mesh>

@@ -4,37 +4,37 @@ const projects = [
   {
     title: "COMPLAINT MANAGEMENT",
     description: "Complaint management involves receiving and addressing student concerns related to academics, facilities or services in a timely and fair manner. It includes recording issues, coordinating with departments and ensuring proper resolution.",
-    image: "/resources/task.png",
+    image: "resources/task.png",
     link: "https://github.com/sarvesh260402"
   },
   {
     title: "SHAREBITE",
     description: "A food sharing app designed to connect people who have surplus food with those who need it, helping reduce food waste. Users can post available food, request items and coordinate pickups.",
-    image: "/resources/Sharebite.png",
+    image: "resources/Sharebite.png",
     link: "https://sharebite-1-j9ms.onrender.com/"
   },
   {
     title: "TASKEY",
     description: "A task management system for office use that helps organize, assign and track daily tasks and projects among employees.",
-    image: "/resources/Taskey.png",
+    image: "resources/Taskey.png",
     link: "https://taskey-9imu.onrender.com/"
   },
   {
     title: "VELMORA — AI-POWERED SHOPPING PLATFORM",
     description: "An AI-driven e-commerce platform that helps users discover products through intelligent recommendations, visualize items using AI-powered virtual try-on technology and preview how products look before purchase.",
-    image: "/resources/AI-Builder.png",
+    image: "resources/AI-Builder.png",
     link: "https://github.com/sarvesh260402"
   },
   {
     title: "GETONDEAL — AI PLAN RECOMMENDATION",
     description: "An AI-based platform that helps users find the best deals, compare plans and prices, and receive personalized recommendations based on their needs.",
-    image: "/resources/Food Sharing.png",
+    image: "resources/Food Sharing.png",
     link: "https://getondeal.onrender.com/"
   },
   {
     title: "GUDIYA — WOMEN'S EMERGENCY SAFETY APP",
     description: "A safety application that enables users to send emergency alerts with a single click, instantly notifying nearby authorities and emergency contacts.",
-    image: "/resources/Gudiye.png",
+    image: "resources/Gudiye.png",
     link: "https://github.com/sarvesh260402"
   }
 ];
