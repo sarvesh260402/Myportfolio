@@ -127,9 +127,9 @@ document.addEventListener('DOMContentLoaded', () => {
         skillObserver.observe(bar);
     });
 
-    // Typing Effect for Hero Title
+    // Typing Effect for Hero Title (skip if title contains HTML elements)
     const title = document.querySelector('.hero-text .title');
-    if (title) {
+    if (title && !title.querySelector('span')) {
         const text = title.textContent;
         title.textContent = '';
         let i = 0;
