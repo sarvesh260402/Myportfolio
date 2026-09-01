@@ -85,14 +85,25 @@ export default function ShreeAI() {
   const [isThinking, setIsThinking] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isListening, setIsListening] = useState(false);
-  const [voiceMode, setVoiceMode] = useState(false);
+  const [voiceMode, setVoiceMode] = useState(true);
 
   const messagesEndRef = useRef(null);
 
-  // Auto greeting after 2.5 seconds
+  // Auto greeting with voice after 2.5 seconds
   useEffect(() => {
+    const greetingMsg = "Hello! My name is Shree. I am Sarvesh Gupta's AI portfolio assistant. How may I help you?";
     const timer = setTimeout(() => {
       setShowGreeting(true);
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(greetingMsg);
+        utterance.rate = 1.0;
+        utterance.pitch = 1.1;
+        utterance.onstart = () => setIsSpeaking(true);
+        utterance.onend = () => setIsSpeaking(false);
+        utterance.onerror = () => setIsSpeaking(false);
+        window.speechSynthesis.speak(utterance);
+      }
     }, 2500);
 
     const minimizeTimer = setTimeout(() => {

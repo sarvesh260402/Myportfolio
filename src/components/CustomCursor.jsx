@@ -4,8 +4,14 @@ import { motion } from 'framer-motion';
 export default function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
+    if (window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 768) {
+      setIsTouchDevice(true);
+      return;
+    }
+
     const updateMousePosition = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -52,6 +58,8 @@ export default function CustomCursor() {
       mixBlendMode: 'normal',
     }
   };
+
+  if (isTouchDevice) return null;
 
   return (
     <motion.div
