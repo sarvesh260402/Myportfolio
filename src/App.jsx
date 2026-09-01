@@ -12,6 +12,7 @@ import Education from './components/Education';
 import Philosophy from './components/Philosophy';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ShreeAI from './components/ShreeAI';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -62,6 +63,7 @@ function App() {
             <Contact />
           </main>
           <Footer />
+          <ShreeAI />
         </>
       )}
     </>

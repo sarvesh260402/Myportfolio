@@ -15,23 +15,24 @@ export default function Navigation() {
       // ScrollSpy logic to determine active section
       const sections = links.map(link => link.toLowerCase());
       let current = 'home';
+      const scrollPosition = window.scrollY + 250;
       
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
-          const rect = element.getBoundingClientRect();
-          // If the top of the section is near the top of the viewport
-          if (rect.top <= 200 && rect.bottom >= 200) {
+          const top = element.offsetTop;
+          const height = element.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
             current = section;
           }
         }
       }
       
-      // Special case: if we are at the very top, set home
-      if (window.scrollY < 100) current = 'home';
+      // Special case: if we are near top
+      if (window.scrollY < 150) current = 'home';
       
-      // Special case: if we are at the very bottom, set contact
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
+      // Special case: if we are near bottom
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 80) {
         current = 'contact';
       }
 
