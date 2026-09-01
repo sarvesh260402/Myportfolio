@@ -126,8 +126,8 @@ export default function ShreeAI() {
       utterance.voice = femaleVoice;
     }
     
-    utterance.rate = 1.0;
-    utterance.pitch = 1.2; // Slightly higher pitch for clear female AI tone
+    utterance.rate = 0.92; // Sweet, natural pacing
+    utterance.pitch = 1.3; // Lovely, warm female voice pitch
 
     utterance.onstart = () => setIsSpeaking(true);
     utterance.onend = () => setIsSpeaking(false);

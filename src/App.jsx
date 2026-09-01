@@ -18,18 +18,19 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Initialize Lenis for smooth scrolling
+    // Only initialize Lenis smooth scroll on non-touch desktop screens to prevent mobile scroll sticking
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.innerWidth < 768;
+    if (isTouch) return;
+
     const lenis = new Lenis({
-      duration: 2.5,
+      duration: 1.5,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: 'vertical',
       gestureDirection: 'vertical',
       smooth: true,
       mouseMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
       infinite: false,
-      wheelMultiplier: 0.8,
+      wheelMultiplier: 1,
     });
 
     function raf(time) {

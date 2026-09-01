@@ -131,10 +131,13 @@ export default function Navigation() {
           initial={{ opacity: 0, x: '100%' }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: '100%' }}
+          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          onClick={() => setMenuOpen(false)}
           style={{
             position: 'fixed',
             top: 0, left: 0, right: 0, bottom: 0,
-            background: 'var(--bg-color)',
+            background: 'rgba(5,5,5,0.95)',
+            backdropFilter: 'blur(20px)',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -142,22 +145,25 @@ export default function Navigation() {
             zIndex: 100
           }}
         >
-          <ul style={{ listStyle: 'none', textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+          <ul style={{ listStyle: 'none', textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
             {links.map((link) => {
               const sectionId = link.toLowerCase();
               const isActive = activeSection === sectionId;
               return (
                 <li key={link}>
                   <button 
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       setMenuOpen(false);
                       const el = document.getElementById(sectionId);
                       if (el) el.scrollIntoView({ behavior: 'smooth' });
                     }}
                     style={{ 
-                      fontSize: '2rem', 
+                      fontSize: '1.8rem', 
                       fontWeight: 'bold',
-                      color: isActive ? 'var(--accent-gold)' : 'var(--text-primary)' 
+                      letterSpacing: '2px',
+                      color: isActive ? 'var(--accent-gold)' : 'var(--text-primary)',
+                      transition: 'all 0.3s ease'
                     }}
                     className={`interactive ${!isActive ? 'gradient-text' : ''}`}
                   >
