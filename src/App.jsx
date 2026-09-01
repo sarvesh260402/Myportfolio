@@ -47,7 +47,6 @@ function App() {
   return (
     <>
       {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
-      <CustomCursor />
       
       {!loading && (
         <>

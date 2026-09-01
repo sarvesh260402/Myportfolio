@@ -85,36 +85,90 @@ export default function ShreeAI() {
   const [isThinking, setIsThinking] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isListening, setIsListening] = useState(false);
-  const [voiceMode, setVoiceMode] = useState(true);
+  const [voiceMode, setVoiceMode] = useState(true); // Voice ON by default per request
+  const [hasSpokenIntro, setHasSpokenIntro] = useState(false);
 
   const messagesEndRef = useRef(null);
 
-  // Auto greeting with voice after 2.5 seconds
-  useEffect(() => {
-    const greetingMsg = "Hello! My name is Shree. I am Sarvesh Gupta's AI portfolio assistant. How may I help you?";
-    const timer = setTimeout(() => {
-      setShowGreeting(true);
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(greetingMsg);
-        utterance.rate = 1.0;
-        utterance.pitch = 1.1;
-        utterance.onstart = () => setIsSpeaking(true);
-        utterance.onend = () => setIsSpeaking(false);
-        utterance.onerror = () => setIsSpeaking(false);
-        window.speechSynthesis.speak(utterance);
-      }
-    }, 2500);
+  // Female voice selection helper
+  const getFemaleVoice = () => {
+    if (!('speechSynthesis' in window)) return null;
+    const voices = window.speechSynthesis.getVoices();
+    const femaleVoice = voices.find(v => 
+      v.name.toLowerCase().includes('female') ||
+      v.name.toLowerCase().includes('zira') ||
+      v.name.toLowerCase().includes('samantha') ||
+      v.name.toLowerCase().includes('victoria') ||
+      v.name.toLowerCase().includes('google uk english female') ||
+      v.name.toLowerCase().includes('google us english female')
+    );
+    return femaleVoice || voices.find(v => v.lang.startsWith('en')) || voices[0];
+  };
 
-    const minimizeTimer = setTimeout(() => {
+  // Pre-load voices
+  useEffect(() => {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = () => {
+        window.speechSynthesis.getVoices();
+      };
+    }
+  }, []);
+
+  // Speech Synthesis (Female Voice Output)
+  const speakText = (text) => {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const cleanText = text.replace(/[*_#]/g, '').replace(/https?:\/\/\S+/g, '');
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    
+    const femaleVoice = getFemaleVoice();
+    if (femaleVoice) {
+      utterance.voice = femaleVoice;
+    }
+    
+    utterance.rate = 1.0;
+    utterance.pitch = 1.2; // Slightly higher pitch for clear female AI tone
+
+    utterance.onstart = () => setIsSpeaking(true);
+    utterance.onend = () => setIsSpeaking(false);
+    utterance.onerror = () => setIsSpeaking(false);
+
+    window.speechSynthesis.speak(utterance);
+  };
+
+  // Trigger female voice intro greeting
+  const triggerIntroGreeting = () => {
+    if (hasSpokenIntro) return;
+    setHasSpokenIntro(true);
+    setShowGreeting(true);
+    speakText("Hello! My name is Shree. I am Sarvesh's AI portfolio assistant. How may I help you?");
+
+    setTimeout(() => {
       setShowGreeting(false);
-    }, 8500);
+    }, 7000);
+  };
+
+  // Auto greeting on page load / first interaction
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      triggerIntroGreeting();
+    }, 1500);
+
+    const handleFirstInteraction = () => {
+      triggerIntroGreeting();
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('touchstart', handleFirstInteraction);
+    };
+
+    window.addEventListener('click', handleFirstInteraction);
+    window.addEventListener('touchstart', handleFirstInteraction);
 
     return () => {
       clearTimeout(timer);
-      clearTimeout(minimizeTimer);
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('touchstart', handleFirstInteraction);
     };
-  }, []);
+  }, [hasSpokenIntro]);
 
   // Initialize initial message
   useEffect(() => {
@@ -130,22 +184,6 @@ export default function ShreeAI() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isThinking]);
-
-  // Speech Synthesis (Voice Output)
-  const speakText = (text) => {
-    if (!voiceMode || !('speechSynthesis' in window)) return;
-    window.speechSynthesis.cancel();
-    const cleanText = text.replace(/[*_#]/g, '').replace(/https?:\/\/\S+/g, '');
-    const utterance = new SpeechSynthesisUtterance(cleanText);
-    utterance.rate = 1.0;
-    utterance.pitch = 1.1;
-
-    utterance.onstart = () => setIsSpeaking(true);
-    utterance.onend = () => setIsSpeaking(false);
-    utterance.onerror = () => setIsSpeaking(false);
-
-    window.speechSynthesis.speak(utterance);
-  };
 
   // Speech Recognition (Voice Input)
   const startListening = () => {
@@ -326,7 +364,7 @@ export default function ShreeAI() {
 
   return (
     <>
-      {/* Floating Greeting Bubble (2-3s auto) */}
+      {/* Floating Greeting Bubble */}
       <AnimatePresence>
         {showGreeting && !isOpen && (
           <motion.div
@@ -351,13 +389,13 @@ export default function ShreeAI() {
               cursor: 'pointer'
             }}
           >
-            <div style={{ fontWeight: 'bold', color: 'var(--accent-gold)', marginBottom: '4px' }}>SHREE AI</div>
+            <div style={{ fontWeight: 'bold', color: 'var(--accent-gold)', marginBottom: '4px' }}>SHREE AI 🔊</div>
             <div>Hello! My name is Shree 👋<br/>I'm Sarvesh's AI portfolio assistant. How may I help you?</div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Main Bottom-Right Shree Floating Button */}
+      {/* Small Floating Circular SHREE Avatar Button */}
       <motion.button
         onClick={() => { setIsOpen(!isOpen); setShowGreeting(false); }}
         whileHover={{ scale: 1.08 }}
@@ -380,7 +418,6 @@ export default function ShreeAI() {
           alignItems: 'center',
           overflow: 'hidden'
         }}
-        className="interactive"
         title="Ask Shree about Sarvesh"
       >
         <div style={{ width: '50px', height: '50px', position: 'relative' }}>
@@ -394,7 +431,7 @@ export default function ShreeAI() {
           letterSpacing: '1px',
           color: 'var(--accent-gold)'
         }}>
-          ● ONLINE
+          SHREE
         </div>
       </motion.button>
 
@@ -411,7 +448,7 @@ export default function ShreeAI() {
               bottom: '100px',
               right: '25px',
               zIndex: 1001,
-              width: 'min(400px, 90vw)',
+              width: 'min(400px, 92vw)',
               height: '560px',
               background: 'rgba(10, 10, 18, 0.92)',
               backdropFilter: 'blur(20px)',
@@ -447,22 +484,8 @@ export default function ShreeAI() {
               </div>
 
               <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                {/* Voice Toggle */}
-                <button
-                  onClick={() => setVoiceMode(!voiceMode)}
-                  style={{
-                    background: voiceMode ? 'rgba(0, 229, 255, 0.2)' : 'transparent',
-                    border: '1px solid var(--glass-border)',
-                    borderRadius: '8px',
-                    color: voiceMode ? 'var(--accent-cyan)' : 'var(--text-secondary)',
-                    fontSize: '0.75rem',
-                    padding: '4px 8px',
-                    cursor: 'pointer'
-                  }}
-                  title="Toggle Voice Output"
-                >
-                  {voiceMode ? '🔊 Voice ON' : '🔇 Voice OFF'}
-                </button>
+                {/* Voice Status Indicator */}
+                <span style={{ fontSize: '0.75rem', color: 'var(--accent-cyan)' }}>🔊 Female Voice</span>
 
                 {/* Close Button */}
                 <button
@@ -583,7 +606,7 @@ export default function ShreeAI() {
                     color: 'var(--text-secondary)',
                     cursor: 'pointer'
                   }}
-                  className="hover-gold interactive"
+                  className="hover-gold"
                 >
                   {q}
                 </button>

@@ -61,17 +61,17 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
-          <h2 style={{ fontSize: '1.2rem', letterSpacing: '2px', color: 'var(--text-secondary)', marginBottom: '1rem' }}>
+          <h2 style={{ letterSpacing: '2px', color: 'var(--text-secondary)', marginBottom: '0.8rem', fontSize: 'clamp(0.9rem, 3vw, 1.2rem)' }}>
             SARVESH GUPTA
           </h2>
-          <h3 className="gold-accent" style={{ fontSize: '1.5rem', marginBottom: '2rem' }}>
+          <h3 className="gold-accent" style={{ marginBottom: '1.5rem', fontSize: 'clamp(1.1rem, 4vw, 1.6rem)' }}>
             Oracle APEX & Full-Stack AI Developer
           </h3>
-          <h1 style={{ fontSize: '4rem', lineHeight: 1.1, marginBottom: '2rem', maxWidth: '800px' }}>
+          <h1 style={{ marginBottom: '1.5rem', maxWidth: '800px' }}>
             Building Intelligent Digital Experiences <br />
             <span className="gradient-accent">with Code, AI & Innovation.</span>
           </h1>
-          <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', maxWidth: '600px', lineHeight: 1.6, marginBottom: '3rem' }}>
+          <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', lineHeight: 1.6, marginBottom: '2.5rem', fontSize: 'clamp(0.95rem, 2.5vw, 1.15rem)' }}>
             Software Developer experienced in Oracle APEX, Full-Stack Development, 
             AI Integration and modern user-focused applications.
           </p>
