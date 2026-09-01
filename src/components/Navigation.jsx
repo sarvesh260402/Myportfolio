@@ -12,6 +12,11 @@ export default function Navigation() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
 
+      // Auto-close mobile menu if user starts scrolling
+      if (menuOpen) {
+        setMenuOpen(false);
+      }
+
       // ScrollSpy logic to determine active section
       const sections = links.map(link => link.toLowerCase());
       let current = 'home';
@@ -43,7 +48,7 @@ export default function Navigation() {
     // Trigger once on mount
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [menuOpen]);
 
   return (
     <motion.nav
@@ -58,7 +63,7 @@ export default function Navigation() {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        background: scrolled ? 'rgba(5,5,5,0.8)' : 'transparent',
+        background: scrolled ? 'rgba(5,5,5,0.95)' : 'transparent',
         backdropFilter: scrolled ? 'blur(12px)' : 'none',
         borderBottom: scrolled ? '1px solid rgba(255,255,255,0.05)' : 'none',
         transition: 'all 0.3s ease'
@@ -119,7 +124,7 @@ export default function Navigation() {
       {/* Mobile Menu Button */}
       <button 
         onClick={() => setMenuOpen(!menuOpen)}
-        style={{ color: 'var(--text-primary)', zIndex: 101 }}
+        style={{ color: 'var(--text-primary)', zIndex: 1000 }}
         className="mobile-menu-btn interactive"
       >
         {menuOpen ? 'CLOSE' : 'MENU'}
@@ -128,21 +133,22 @@ export default function Navigation() {
       {/* Mobile Menu Overlay */}
       {menuOpen && (
         <motion.div
-          initial={{ opacity: 0, x: '100%' }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: '100%' }}
-          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3 }}
           onClick={() => setMenuOpen(false)}
           style={{
             position: 'fixed',
             top: 0, left: 0, right: 0, bottom: 0,
-            background: 'rgba(5,5,5,0.95)',
-            backdropFilter: 'blur(20px)',
+            width: '100vw',
+            height: '100vh',
+            background: '#050505', // 100% Solid Opaque Background to stop text bleed-through
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            zIndex: 100
+            zIndex: 999
           }}
         >
           <ul style={{ listStyle: 'none', textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
